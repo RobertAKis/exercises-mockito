@@ -1,0 +1,26 @@
+package exercise01;
+
+import shared.Book;
+
+import java.util.List;
+
+public class BookFinder {
+
+    private final SlowDatabase slowDatabase;
+
+    public BookFinder(final SlowDatabase slowDatabase) {
+        this.slowDatabase = slowDatabase;
+    }
+
+    public String findBookTitleById(int id) {
+
+        final List<Book> allBooks = slowDatabase.getAllBooks();
+        for (Book book : allBooks) {
+            if(book.getId() == id){
+                return "Book [" + book.getTitle() + "] found!";
+            }
+        }
+
+        return "Book not found";
+    }
+}
